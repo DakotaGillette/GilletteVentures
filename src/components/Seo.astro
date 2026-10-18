@@ -35,6 +35,13 @@ const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${ti
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
+<!-- shortcut: assumes every OG image is 1200x630 (the public/og rule); pass sizes in if pages ever use other images. -->
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${site.name}: ${site.tagline}`} />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:image:alt" content={`${site.name}: ${site.tagline}`} />
+<meta name="theme-color" content="#121318" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
@@ -44,7 +51,6 @@ const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${ti
 {site.verification.bing && <meta name="msvalidate.01" content={site.verification.bing} />}
 
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 

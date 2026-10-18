@@ -1,20 +1,224 @@
 ---
 import Base from "../layouts/Base.astro";
 import { site } from "../config/site";
+
+export const prerender = true;
+
+const { street, city, region, postal } = site.address;
+
+const principles = [
+  { title: "Own the outcome", body: "Every product has one person accountable for it, from first commit to last customer." },
+  { title: "Build with care", body: "We sweat the details customers notice and the ones they never will." },
+  { title: "Act with integrity", body: "We keep our word and tell customers the truth." },
+  { title: "Think long term", body: "We make decisions we will be glad of in five years, not five weeks." },
+];
+
+const faqs = [
+  {
+    q: "What does Gillette Ventures do?",
+    a: "We start, build and run our own products. Each one operates under its own brand.",
+  },
+  { q: "Do you take client work?", a: "No. We only work on products we own." },
+  {
+    q: "How can I confirm a product belongs to Gillette Ventures?",
+    a: `Email ${site.email} and we will confirm it in writing.`,
+  },
+  { q: "Where is the company based?", a: `Our principal address is in ${city}, ${region}.` },
+];
+
+const details = [
+  { label: "Legal name", value: site.legalName },
+  { label: "Entity type", value: "Limited liability company" },
+  { label: "Formed in", value: site.jurisdiction },
+  { label: "Principal address", value: street && `${street}, ${city}, ${region} ${postal}` },
+  { label: "Email", value: site.email, href: `mailto:${site.email}` },
+  { label: "Website", value: site.url.replace("https://", ""), href: site.url },
+].filter((d) => d.value);
 ---
 
-<Base title={site.name} description={site.description}>
-  <h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-    {site.name}
-  </h1>
-  <p class="mt-4 max-w-prose text-lg text-ink-muted">{site.description}</p>
+<Base
+  title={site.name}
+  description={`${site.legalName} is the holding company behind a group of independent ventures. Legal company details, principal address and how to reach the team.`}
+>
+  <section class="relative pt-4 pb-8 sm:pt-16 sm:pb-24">
+    <div class="hero-field pointer-events-none absolute -inset-x-40 -top-40 bottom-0 -z-10" aria-hidden="true">
+      <div class="hero-grid absolute inset-0"></div>
+      <div class="hero-glow absolute top-0 right-[8%] size-[min(780px,90vw)] rounded-full"></div>
+    </div>
+    <h1 class="max-w-4xl text-[clamp(2.75rem,7vw,5.25rem)] leading-[1.02] font-semibold tracking-[-0.04em] text-balance">
+      <span class="rise block" style="--i:0">We build and run</span>
+      <span class="rise block text-ink-muted" style="--i:1">our own products.</span>
+    </h1>
+    <p class="rise mt-7 max-w-xl text-lg leading-relaxed text-ink-muted" style="--i:2">
+      {site.legalName} is the parent company of a group of independently branded products.
+    </p>
+    <div class="rise mt-9 flex flex-wrap gap-3" style="--i:3">
+      <a
+        href="/contact/"
+        class="inline-flex h-11 items-center gap-2 rounded-lg bg-ink px-5 text-sm font-medium text-surface transition-[background-color,transform] duration-200 hover:bg-white active:scale-[0.98]"
+      >
+        Contact us
+        <svg class="size-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 8h9m-3.5-3.5L12.5 8 9 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+      <a
+        href="#details"
+        class="inline-flex h-11 items-center rounded-lg border border-line-strong px-5 text-sm font-medium text-ink transition-colors duration-200 hover:border-ink-faint hover:bg-surface-muted"
+      >
+        Company details
+      </a>
+    </div>
+  </section>
 
-  <div class="mt-8">
-    <a
-      href="/contact"
-      class="inline-flex items-center rounded-md bg-brand-500 px-5 py-3 text-white transition-colors hover:bg-brand-700"
-    >
-      Get in touch
-    </a>
-  </div>
+  <section class="mt-16 sm:mt-20" aria-labelledby="how-heading">
+    <h2 id="how-heading" class="reveal text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">How we work</h2>
+    <ul class="mt-10 grid gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
+      {
+        principles.map((p, i) => (
+          <li class="reveal border-t border-line-strong pt-6" style={`--i:${i}`}>
+            <h3 class="font-medium">{p.title}</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{p.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section id="details" class="mt-28 scroll-mt-24 sm:mt-36" aria-labelledby="details-heading">
+    <h2 id="details-heading" class="reveal text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">Company details</h2>
+    <p class="reveal mt-4 max-w-xl text-lg leading-relaxed text-ink-muted" style="--i:1">
+      Our legal and contact information, in one place.
+    </p>
+    <dl class="reveal mt-10 overflow-hidden rounded-xl tabular-nums border border-line bg-surface-muted/60">
+      {
+        details.map((d) => (
+          <div class="detail-row grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1 border-b border-line px-5 py-4 transition-colors last:border-b-0 hover:bg-surface-raised/50 sm:grid-cols-[13rem_1fr_auto] sm:px-6">
+            <dt class="col-span-2 text-sm text-ink-faint sm:col-span-1">{d.label}</dt>
+            <dd class="min-w-0 break-words">
+              {d.href ? (
+                <a href={d.href} class="underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink-muted">
+                  {d.value}
+                </a>
+              ) : (
+                d.value
+              )}
+            </dd>
+            <dd>
+              <button
+                type="button"
+                data-copy={d.value}
+                aria-label={`Copy ${d.label.toLowerCase()}`}
+                class="group grid size-11 place-items-center rounded-md text-ink-faint transition-colors hover:bg-surface-raised hover:text-ink data-copied:text-brand-300"
+              >
+                <svg class="size-4 transition-[opacity,scale] duration-200 group-data-copied:scale-50 group-data-copied:opacity-0 [grid-area:1/1]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="5.25" y="5.25" width="8" height="8" rx="1.75" stroke="currentColor" stroke-width="1.5" />
+                  <path d="M10.75 3.5v-.25A1.5 1.5 0 0 0 9.25 1.75h-5.5a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <svg class="size-4 scale-50 opacity-0 transition-[opacity,scale] duration-200 group-data-copied:scale-100 group-data-copied:opacity-100 [grid-area:1/1]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="m3.5 8.5 3 3 6-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p id="copy-status" class="sr-only" aria-live="polite"></p>
+  </section>
+
+  <section class="mt-28 grid gap-8 sm:mt-36 lg:grid-cols-[1fr_1.6fr] lg:gap-16" aria-labelledby="faq-heading">
+    <h2 id="faq-heading" class="reveal text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">Common questions</h2>
+    <dl class="reveal divide-y divide-line border-y border-line" style="--i:1">
+      {
+        faqs.map((f) => (
+          <div class="py-6">
+            <dt class="font-medium">{f.q}</dt>
+            <dd class="mt-2 max-w-prose text-[15px] leading-relaxed text-ink-muted">{f.a}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section
+    class="reveal spotlight mt-28 overflow-hidden rounded-xl border border-line bg-surface-muted/60 px-6 py-14 sm:mt-36 sm:px-12 sm:py-20"
+    aria-labelledby="contact-heading"
+  >
+    <h2 id="contact-heading" class="text-3xl font-semibold tracking-[-0.03em] sm:text-5xl">Write to us.</h2>
+    <p class="mt-4 max-w-lg text-lg leading-relaxed text-ink-muted">
+      Partnerships, verification requests or questions about a venture. We reply by email.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+      <a
+        href={`mailto:${site.email}`}
+        class="inline-flex h-11 items-center gap-2 rounded-lg bg-ink px-5 text-sm font-medium text-surface transition-[background-color,transform] duration-200 hover:bg-white active:scale-[0.98]"
+      >
+        Email us
+        <svg class="size-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 8h9m-3.5-3.5L12.5 8 9 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+      <span class="text-ink-muted">{site.email}</span>
+    </div>
+  </section>
 </Base>
+
+<script>
+  const status = document.getElementById("copy-status");
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
+    let timer: number | undefined;
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? "");
+      } catch {
+        return; // Clipboard blocked; the value stays selectable on the page.
+      }
+      button.dataset.copied = "";
+      // Flash the row so it is clear which value went to the clipboard.
+      button.closest(".detail-row")?.animate(
+        [{ backgroundColor: "oklch(0.64 0.19 278 / 0.14)" }, { backgroundColor: "transparent" }],
+        { duration: 700, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+      );
+      if (status) status.textContent = "Copied";
+      clearTimeout(timer);
+      timer = window.setTimeout(() => delete button.dataset.copied, 1600);
+    });
+  });
+
+  // Scroll fade-in: each .reveal fades up once as it enters the viewport.
+  // Revealing one also reveals everything above it, so anchor jumps and fast flicks
+  // never leave a skipped section hidden.
+  const reveals = [...document.querySelectorAll<HTMLElement>(".reveal")];
+  const revealer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const last = reveals.indexOf(entry.target as HTMLElement);
+        for (const el of reveals.slice(0, last + 1)) {
+          el.classList.add("is-in");
+          revealer.unobserve(el);
+        }
+      }
+    },
+    { rootMargin: "0px 0px -10% 0px" },
+  );
+  reveals.forEach((el) => revealer.observe(el));
+  document.documentElement.classList.add("reveal-ready");
+
+  // The hero glow loops forever; stop it while it is off screen.
+  const field = document.querySelector<HTMLElement>(".hero-field");
+  if (field) {
+    new IntersectionObserver(([entry]) => {
+      field.classList.toggle("is-paused", !entry?.isIntersecting);
+    }).observe(field);
+  }
+
+  document.querySelectorAll<HTMLElement>(".spotlight").forEach((el) => {
+    el.addEventListener("pointermove", (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--x", `${e.clientX - r.left}px`);
+      el.style.setProperty("--y", `${e.clientY - r.top}px`);
+    });
+  });
+</script>

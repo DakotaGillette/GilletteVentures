@@ -1,102 +1,64 @@
 ---
 import Base from "../layouts/Base.astro";
-import { actions, isInputError } from "astro:actions";
 import { site } from "../config/site";
 import { breadcrumbs } from "../lib/schema";
-import { TURNSTILE_SITE_KEY } from "astro:env/client";
 
-const result = Astro.getActionResult(actions.contact);
-const sent = result && !result.error;
+export const prerender = true;
 
-/** Per-field messages for validation failures; a single message for anything else. */
-const fieldErrors = result?.error && isInputError(result.error) ? result.error.fields : undefined;
-const formError =
-  result?.error && !isInputError(result.error) ? result.error.message : undefined;
+const { street, city, region, postal } = site.address;
 const crumbs = breadcrumbs([
   { name: "Home", path: "/" },
-  { name: "Contact", path: "/contact" },
+  { name: "Contact", path: "/contact/" },
 ]);
 ---
 
 <Base
-  title="Contact"
-  description={`Get in touch with ${site.name}.`}
+  title="Contact Gillette Ventures LLC by email"
+  description={`Contact ${site.legalName} about partnerships, vendor and banking verification, or a venture we run. Email ${site.email} and we reply directly.`}
   schema={[crumbs]}
 >
-  <h1 class="font-display text-3xl font-semibold">Contact</h1>
+  <h1 class="rise text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Contact</h1>
+  <p class="rise mt-4 max-w-prose text-lg leading-relaxed text-ink-muted" style="--i:1">
+    For partnerships, vendor or banking verification, or questions about a venture under the company. We reply by email.
+  </p>
 
-  {
-    sent ? (
-      <p class="mt-6 max-w-prose rounded-md border border-line bg-surface-muted p-4">
-        Thanks. We have your message and will reply to the address you gave.
-      </p>
-    ) : (
-      <form method="POST" action={actions.contact} class="mt-8 max-w-xl space-y-5">
-        {formError && (
-          <p class="rounded-md border border-line bg-surface-muted p-4 text-sm">{formError}</p>
-        )}
-
-        <div>
-          <label for="name" class="block text-sm font-medium">Name</label>
-          <input
-            id="name"
-            name="name"
-            aria-describedby={fieldErrors?.name ? "name-error" : undefined}
-            type="text"
-            required
-            autocomplete="name"
-            class="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2"
-          />
-          {fieldErrors?.name && <p id="name-error" class="mt-1 text-sm text-red-600">{fieldErrors.name[0]}</p>}
+  <div class="rise mt-12 grid overflow-hidden rounded-xl border border-line bg-surface-muted/60 sm:grid-cols-2" style="--i:2">
+    <div class="spotlight border-b border-line p-6 sm:border-r sm:border-b-0 sm:p-10">
+      <h2 class="text-sm text-ink-faint">Email</h2>
+      <p class="mt-3 text-xl font-medium tracking-[-0.01em] break-words sm:text-2xl">{site.email}</p>
+      <a
+        href={`mailto:${site.email}`}
+        class="mt-8 inline-flex h-11 items-center gap-2 rounded-lg bg-ink px-5 text-sm font-medium text-surface transition-[background-color,transform] duration-200 hover:bg-white active:scale-[0.98]"
+      >
+        Email us
+        <svg class="size-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 8h9m-3.5-3.5L12.5 8 9 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+    {
+      street && (
+        <div class="p-6 sm:p-10">
+          <h2 class="text-sm text-ink-faint">Principal address</h2>
+          <address class="mt-3 text-lg leading-relaxed not-italic tabular-nums">
+            {site.legalName}
+            <br />
+            {street}
+            <br />
+            {city}, {region} {postal}
+          </address>
         </div>
-
-        <div>
-          <label for="email" class="block text-sm font-medium">Email</label>
-          <input
-            id="email"
-            name="email"
-            aria-describedby={fieldErrors?.email ? "email-error" : undefined}
-            type="email"
-            required
-            autocomplete="email"
-            class="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2"
-          />
-          {fieldErrors?.email && <p id="email-error" class="mt-1 text-sm text-red-600">{fieldErrors.email[0]}</p>}
-        </div>
-
-        <div>
-          <label for="message" class="block text-sm font-medium">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="6"
-            required
-            aria-describedby={fieldErrors?.message ? "message-error" : undefined}
-            class="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2"
-          />
-          {fieldErrors?.message && <p id="message-error" class="mt-1 text-sm text-red-600">{fieldErrors.message[0]}</p>}
-        </div>
-
-        {/* Honeypot: hidden from people, tempting to bots. */}
-        <div class="absolute left-[-9999px]" aria-hidden="true">
-          <label for="company">Company</label>
-          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-
-        {TURNSTILE_SITE_KEY && (
-          <>
-            <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} />
-            <script is:inline async src="https://challenges.cloudflare.com/turnstile/v0/api.js" />
-          </>
-        )}
-
-        <button
-          type="submit"
-          class="inline-flex items-center rounded-md bg-brand-500 px-5 py-3 text-white transition-colors hover:bg-brand-700"
-        >
-          Send message
-        </button>
-      </form>
-    )
-  }
+      )
+    }
+  </div>
 </Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".spotlight").forEach((el) => {
+    el.addEventListener("pointermove", (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--x", `${e.clientX - r.left}px`);
+      el.style.setProperty("--y", `${e.clientY - r.top}px`);
+    });
+  });
+</script>

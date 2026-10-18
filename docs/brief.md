@@ -2,18 +2,14 @@
 
 ## TBD
 
-- Registered agent street, city, state, ZIP (goes in `src/config/site.ts`, shown in the footer and on contact)
 - State of formation (sets governing law on the terms page)
-- GA4 measurement ID (`GA_MEASUREMENT_ID` in `wrangler.jsonc`)
-- Resend API key, domain verification, and Turnstile keys
 - Inbox that `admin@gilletteventures.com` forwards to (Cloudflare Email Routing)
-- Confirm the one-line description: "builds and operates independent software and media ventures"
 
 ## The business
 
 - Name: Gillette Ventures. Legal name: Gillette Ventures LLC.
 - What it is: an umbrella LLC. Each project runs under it as a DBA and spins out into its own entity once it earns enough.
-- Location: no storefront. The site shows the registered agent address.
+- Location: no storefront. Principal address (the registered agent's): 784 S. Clearwater Loop, Ste B, Post Falls, ID 83854, US.
 - Contact: admin@gilletteventures.com. No phone.
 - schema.org type: `Organization`.
 
@@ -21,7 +17,7 @@
 
 - Main job: legitimacy. The readers are banks, Stripe and other payment processors, app stores, vendors and partners who are checking that the LLC is real.
 - So the legal name, address and email must match exactly what's on file with those parties.
-- Primary action: email, or the contact form.
+- Primary action: email. No contact form (decided 2026-10-18).
 - No current site. No references given.
 
 ## Brand and look
@@ -34,8 +30,8 @@
 ## Pages
 
 - Home: what Gillette Ventures is, a short explanation of the umbrella/DBA model, and a contact block.
-- Contact: form (Resend + Turnstile) plus the address and email.
-- Privacy policy: what the form collects, GA4 cookies, Resend as processor, how to make requests, effective date.
+- Contact: email, principal address, and a mailto button.
+- Privacy policy: email you send us, GA4 cookies, Cloudflare hosting, how to make requests, effective date.
 - Terms of use: short site terms, governed by the law of the state of formation.
 - 404 from the template.
 - Ventures are not listed yet. When they are, they become a content collection and a list page.
@@ -45,8 +41,7 @@
 - Domain: gilletteventures.com, registered on Cloudflare.
 - Hosting: Cloudflare Workers, worker `gillette-ventures`.
 - Repo: github.com/DakotaGillette/GilletteVentures.
-- Form submissions go to admin@gilletteventures.com, from noreply@gilletteventures.com.
-- Analytics: GA4 via Partytown.
+- Analytics: GA4 (G-GPXWKKWZHS) via Partytown.
 - Integrations: none.
 
 ## Practical

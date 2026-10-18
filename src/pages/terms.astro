@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../config/site";
+import { breadcrumbs } from "../lib/schema";
+
+export const prerender = true;
+
+const effective = "October 18, 2026";
+const law = site.jurisdiction
+  ? `the State of ${site.jurisdiction}`
+  : `the state in which ${site.legalName} is organized`;
+const crumbs = breadcrumbs([
+  { name: "Home", path: "/" },
+  { name: "Terms of use", path: "/terms/" },
+]);
+---
+
+<Base
+  title={`Terms of use for ${site.legalName}`}
+  description={`The terms that apply when you use the ${site.legalName} website, covering content ownership, outside links, disclaimers, liability and governing law.`}
+  schema={[crumbs]}
+>
+  <article class="legal max-w-prose">
+    <h1 class="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Terms of use</h1>
+    <p class="!mt-4 text-sm text-ink-faint">Effective {effective}</p>
+
+    <p>
+      These terms apply to {site.url.replace("https://", "")}, run by {site.legalName}. By using the site you agree to
+      them. Products and services offered by ventures under the company have their own terms.
+    </p>
+
+    <h2>Information only</h2>
+    <p>
+      This site describes the company. Nothing on it is an offer to sell, a solicitation of investment, or professional
+      advice.
+    </p>
+
+    <h2>Content ownership</h2>
+    <p>
+      The text, design and marks on this site belong to {site.legalName}. You may view and share links to it. Do not
+      copy or reuse its content for commercial purposes without written permission.
+    </p>
+
+    <h2>Links to other sites</h2>
+    <p>We are not responsible for the content or practices of sites we link to, including venture sites.</p>
+
+    <h2>Disclaimer</h2>
+    <p>
+      The site is provided as is, without warranties of any kind. We do not guarantee that it will be accurate,
+      complete or always available.
+    </p>
+
+    <h2>Limitation of liability</h2>
+    <p>
+      To the extent the law allows, {site.legalName} is not liable for any indirect, incidental or consequential
+      damages arising from your use of the site.
+    </p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws of {law}, without regard to its conflict of law rules.</p>
+
+    <h2>Changes</h2>
+    <p>We may update these terms. The effective date at the top shows when they last changed.</p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about these terms go to <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </article>
+</Base>

@@ -1,4 +1,6 @@
 ---
+import { Font } from "astro:assets";
+import { GA_MEASUREMENT_ID } from "astro:env/client";
 import Seo from "../components/Seo.astro";
 import { site } from "../config/site";
 import { graph, organization, website } from "../lib/schema";
@@ -15,8 +17,10 @@ interface Props {
 
 const { schema = [], ...seo } = Astro.props;
 const siteGraph = graph(organization(), website(), ...schema);
-const gaId = import.meta.env.GA_MEASUREMENT_ID;
+const gaId = GA_MEASUREMENT_ID;
 const isProd = import.meta.env.PROD;
+const { street, city, region, postal } = site.address;
+const onContact = Astro.url.pathname.replace(/\/$/, "") === "/contact";
 ---
 
 <!doctype html>
@@ -25,6 +29,7 @@ const isProd = import.meta.env.PROD;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-geist" preload />
     <Seo {...seo} schema={[siteGraph]} />
     {
       isProd && gaId && (
@@ -44,39 +49,53 @@ const isProd = import.meta.env.PROD;
       )
     }
   </head>
-  <body class="flex min-h-dvh flex-col">
+  <body class="flex min-h-dvh flex-col overflow-x-clip">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand-500 focus:px-4 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-surface"
     >
       Skip to content
     </a>
 
-    <header class="border-b border-line">
-      <nav class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4">
-        <a href="/" class="font-display text-lg font-semibold">{site.name}</a>
-        <ul class="flex items-center gap-6 text-sm">
-          <li><a href="/" class="hover:text-brand-500">Home</a></li>
-          <li><a href="/contact" class="hover:text-brand-500">Contact</a></li>
+    <header style="view-transition-name: site-header" class="sticky top-0 z-40 border-b border-line/70 bg-surface/75 backdrop-blur-xl backdrop-saturate-150">
+      <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+        <a href="/" class="-mx-2 rounded-md px-2 py-3 text-base tracking-[-0.03em]" aria-label={site.name}>
+          <span class="font-semibold">Gillette</span><span class="font-normal text-ink-muted">Ventures</span>
+        </a>
+        <ul class="flex items-center gap-1 text-sm">
+          <li class="hidden sm:block">
+            <a href="/#details" class="block rounded-md px-3 py-3 text-ink-muted transition-colors hover:text-ink">Company details</a>
+          </li>
+          <li>
+            <a
+              href="/contact/"
+              aria-current={onContact ? "page" : undefined}
+              class="relative ml-1 inline-flex h-8 items-center rounded-md border border-line-strong bg-surface-raised px-3 font-medium transition-colors after:absolute after:-inset-1.5 after:content-[''] hover:border-ink-faint aria-[current=page]:border-brand-400/60 aria-[current=page]:text-brand-300"
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
 
-    <main id="main" class="mx-auto w-full max-w-5xl flex-1 px-4 py-12">
+    <main id="main" class="mx-auto w-full max-w-6xl flex-1 px-4 py-16 sm:px-6 sm:py-20">
       <slot />
     </main>
 
     <footer class="border-t border-line">
-      <div class="mx-auto max-w-5xl px-4 py-8 text-sm text-ink-muted">
-        <p>&copy; {new Date().getFullYear()} {site.legalName || site.name}</p>
-        {site.phone && <p><a href={`tel:${site.phone}`} class="hover:text-brand-500">{site.phone}</a></p>}
-        {
-          site.address.street && (
-            <p>
-              {site.address.street}, {site.address.city}, {site.address.region} {site.address.postal}
-            </p>
-          )
-        }
+      <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 text-sm text-ink-faint tabular-nums sm:flex-row sm:items-end sm:justify-between sm:px-6">
+        <div class="space-y-1.5">
+          <p class="font-medium text-ink-muted">{site.legalName || site.name}</p>
+          {street && <p>{street}, {city}, {region} {postal}</p>}
+          {site.phone && <p><a href={`tel:${site.phone}`} class="transition-colors hover:text-ink relative after:absolute after:-inset-x-1 after:-inset-y-3 after:content-['']">{site.phone}</a></p>}
+          {site.email && <p><a href={`mailto:${site.email}`} class="transition-colors hover:text-ink relative after:absolute after:-inset-x-1 after:-inset-y-3 after:content-['']">{site.email}</a></p>}
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="/privacy/" class="transition-colors hover:text-ink relative after:absolute after:-inset-x-1 after:-inset-y-3 after:content-['']">Privacy</a>
+          <a href="/terms/" class="transition-colors hover:text-ink relative after:absolute after:-inset-x-1 after:-inset-y-3 after:content-['']">Terms</a>
+          <span>&copy; {new Date().getFullYear()}</span>
+        </div>
       </div>
     </footer>
   </body>

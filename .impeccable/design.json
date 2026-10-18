@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-18T21:58:55.757Z",
+  "title": "Design System: Gillette Ventures",
+  "extensions": {
+    "colorMeta": {
+      "brand-300": {
+        "role": "primary",
+        "displayName": "Confirmed Violet",
+        "canonical": "oklch(0.8 0.1 278)",
+        "tonalRamp": [
+          "oklch(0.15 0.1 278)",
+          "oklch(0.26 0.1 278)",
+          "oklch(0.37 0.1 278)",
+          "oklch(0.48 0.1 278)",
+          "oklch(0.6 0.1 278)",
+          "oklch(0.71 0.1 278)",
+          "oklch(0.83 0.1 278)",
+          "oklch(0.95 0.1 278)"
+        ]
+      },
+      "brand-400": {
+        "role": "primary",
+        "displayName": "Focus Violet",
+        "canonical": "oklch(0.72 0.15 278)",
+        "tonalRamp": [
+          "oklch(0.15 0.15 278)",
+          "oklch(0.26 0.15 278)",
+          "oklch(0.37 0.15 278)",
+          "oklch(0.48 0.15 278)",
+          "oklch(0.6 0.15 278)",
+          "oklch(0.71 0.15 278)",
+          "oklch(0.83 0.15 278)",
+          "oklch(0.95 0.15 278)"
+        ]
+      },
+      "brand-500": {
+        "role": "primary",
+        "displayName": "Signal Violet",
+        "canonical": "oklch(0.64 0.19 278)",
+        "tonalRamp": [
+          "oklch(0.15 0.19 278)",
+          "oklch(0.26 0.19 278)",
+          "oklch(0.37 0.19 278)",
+          "oklch(0.48 0.19 278)",
+          "oklch(0.6 0.19 278)",
+          "oklch(0.71 0.19 278)",
+          "oklch(0.83 0.19 278)",
+          "oklch(0.95 0.19 278)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "canonical": "oklch(0.145 0.004 270)",
+        "tonalRamp": [
+          "oklch(0.145 0.004 270)",
+          "oklch(0.175 0.005 270)",
+          "oklch(0.2 0.006 270)",
+          "oklch(0.24 0.006 270)",
+          "oklch(0.31 0.008 270)",
+          "oklch(0.62 0.01 270)",
+          "oklch(0.68 0.01 270)",
+          "oklch(0.97 0.003 270)"
+        ]
+      },
+      "surface-muted": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "oklch(0.175 0.005 270)"
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Lifted",
+        "canonical": "oklch(0.2 0.006 270)"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(0.97 0.003 270)"
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted ink",
+        "canonical": "oklch(0.68 0.01 270)"
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint ink",
+        "canonical": "oklch(0.62 0.01 270)"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(0.24 0.006 270)"
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong hairline",
+        "canonical": "oklch(0.31 0.008 270)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home hero headline only."
+      },
+      "page-title": {
+        "displayName": "Page title",
+        "purpose": "h1 on inner pages."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Principle names and question text."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The sentence under a heading, muted ink."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Principle and answer text, max-w-prose."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Table and panel labels, button and nav text."
+      }
+    },
+    "shadows": [],
+    "effects": [
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid var(--color-brand-400); outline-offset: 3px; border-radius: 6px",
+        "purpose": "Global :focus-visible treatment."
+      },
+      {
+        "name": "selection",
+        "value": "background: oklch(0.64 0.19 278 / 0.35)",
+        "purpose": "Text selection."
+      },
+      {
+        "name": "hero-grid",
+        "value": "radial-gradient(oklch(1 0 0 / 0.09) 1px, transparent 1px) 0 0 / 24px 24px; mask: radial-gradient(ellipse 60% 70% at 70% 35%, black, transparent 75%)",
+        "purpose": "Hero dot-grid light field."
+      },
+      {
+        "name": "hero-glow",
+        "value": "radial-gradient(circle, oklch(0.64 0.19 278 / 0.22), transparent 62%); filter: blur(40px)",
+        "purpose": "The one light source in the hero, upper right."
+      },
+      {
+        "name": "spotlight",
+        "value": "radial-gradient(600px circle at var(--x) var(--y), oklch(0.64 0.19 278 / 0.16), transparent 45%)",
+        "purpose": "Pointer-following light inside contact panels."
+      },
+      {
+        "name": "header-glass",
+        "value": "background: oklch(0.145 0.004 270 / 0.75); backdrop-filter: blur(24px) saturate(1.5)",
+        "purpose": "Sticky header."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entrance easing."
+      },
+      {
+        "name": "rise",
+        "value": "900ms ease-out-expo; from opacity 0, translateY(10px), blur(6px); delay calc(var(--i) * 70ms + 80ms)",
+        "purpose": "Load entrance, staggered."
+      },
+      {
+        "name": "fade",
+        "value": "opacity from 0; hero grid 1600ms after 200ms, glow 2000ms after 300ms, ease-out-expo",
+        "purpose": "Hero light field fade-in."
+      },
+      {
+        "name": "drift",
+        "value": "18s ease-in-out infinite alternate; to translate(-12%, 10%) scale(1.15)",
+        "purpose": "Hero glow drift."
+      },
+      {
+        "name": "copy-morph",
+        "value": "opacity and scale 200ms; copy icon 1 to 0.5, check 0.5 to 1; copied state held 1600ms",
+        "purpose": "Copy button confirmation."
+      },
+      {
+        "name": "control",
+        "value": "200ms color/background; primary press scale(0.98)",
+        "purpose": "Button and link state changes."
+      },
+      {
+        "name": "reveal",
+        "value": ".reveal-ready .reveal: opacity 0, translateY(14px) to none; 800ms ease-out-expo; delay calc(var(--i) * 80ms); IntersectionObserver rootMargin 0 0 -10% 0, once, reveals all earlier .reveal",
+        "purpose": "Scroll fade-in. Hidden only after script adds reveal-ready to html."
+      },
+      {
+        "name": "view-transition",
+        "value": "@view-transition { navigation: auto }; old root fades out 140ms ease-in; new root fades in from translateY(6px) 320ms ease-out-expo; header view-transition-name: site-header",
+        "purpose": "Cross-document page change with a fixed header."
+      },
+      {
+        "name": "row-flash",
+        "value": "WAAPI on the details row: background oklch(0.64 0.19 278 / 0.14) to transparent, 700ms ease-out-expo",
+        "purpose": "Shows which value was copied."
+      },
+      {
+        "name": "pause-offscreen",
+        "value": ".hero-field.is-paused .hero-glow { animation-play-state: paused }",
+        "purpose": "Stop the drift loop when the hero is out of view."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "rise: fade 400ms; glow: fade 600ms ease-out, no drift; reveal and page transition: opacity only; copy icon scale: none; primary press scale: none; scroll-behavior: auto; color and opacity transitions kept",
+        "purpose": "Movement goes, fades stay."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ],
+    "brand": {
+      "wordmark": {
+        "text": "GilletteVentures",
+        "ariaLabel": "Gillette Ventures",
+        "fontSize": "16px",
+        "letterSpacing": "-0.03em",
+        "parts": [
+          {
+            "text": "Gillette",
+            "fontWeight": 600,
+            "color": "ink"
+          },
+          {
+            "text": "Ventures",
+            "fontWeight": 400,
+            "color": "ink-muted"
+          }
+        ],
+        "note": "No icon."
+      },
+      "favicon": {
+        "glyph": "G",
+        "font": "Geist 600",
+        "foreground": "#f4f5f7",
+        "background": "#121318",
+        "format": "PNG",
+        "files": [
+          "favicon.ico (32, 48)",
+          "apple-touch-icon.png (180)",
+          "icon-192.png",
+          "icon-512.png"
+        ],
+        "manifestThemeColor": "#121318",
+        "manifestBackgroundColor": "#121318"
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "White action button; the main call to write to us.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Contact us<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3.5 8h9m-3.5-3.5L12.5 8 9 11.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: var(--radius-lg, 8px); background: var(--color-ink, oklch(0.97 0.003 270)); color: var(--color-surface, oklch(0.145 0.004 270)); font: 500 0.875rem/1.43 var(--font-sans, Geist, system-ui, sans-serif); text-decoration: none; transition: background-color 200ms, transform 200ms; } .ds-btn-primary:hover { background: #fff; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-brand-400, oklch(0.72 0.15 278)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outlined secondary action.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Company details</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: var(--radius-lg, 8px); border: 1px solid var(--color-line-strong, oklch(0.31 0.008 270)); color: var(--color-ink, oklch(0.97 0.003 270)); font: 500 0.875rem/1.43 var(--font-sans, Geist, system-ui, sans-serif); text-decoration: none; transition: background-color 200ms, border-color 200ms; } .ds-btn-ghost:hover { border-color: var(--color-ink-faint, oklch(0.62 0.01 270)); background: var(--color-surface-muted, oklch(0.175 0.005 270)); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--color-brand-400, oklch(0.72 0.15 278)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Copy Button",
+      "kind": "custom",
+      "refersTo": "button-copy",
+      "description": "44px copy control with icon morph; turns Confirmed Violet when copied and flashes its row Signal Violet at 14% over 700ms.",
+      "html": "<button type=\"button\" class=\"ds-copy\" aria-label=\"Copy legal name\" onclick=\"this.toggleAttribute('data-copied')\"><svg class=\"ds-copy-a\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><rect x=\"5.25\" y=\"5.25\" width=\"8\" height=\"8\" rx=\"1.75\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M10.75 3.5v-.25A1.5 1.5 0 0 0 9.25 1.75h-5.5a1.5 1.5 0 0 0-1.5 1.5v5.5a1.5 1.5 0 0 0 1.5 1.5H4\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg><svg class=\"ds-copy-b\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"m3.5 8.5 3 3 6-7\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-copy { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: var(--radius-md, 6px); background: transparent; color: var(--color-ink-faint, oklch(0.62 0.01 270)); cursor: pointer; transition: color 150ms, background-color 150ms; } .ds-copy > svg { grid-area: 1 / 1; transition: opacity 200ms, scale 200ms; } .ds-copy-b { opacity: 0; scale: 0.5; } .ds-copy:hover { background: var(--color-surface-raised, oklch(0.2 0.006 270)); color: var(--color-ink, oklch(0.97 0.003 270)); } .ds-copy[data-copied] { color: var(--color-brand-300, oklch(0.8 0.1 278)); } .ds-copy[data-copied] .ds-copy-a { opacity: 0; scale: 0.5; } .ds-copy[data-copied] .ds-copy-b { opacity: 1; scale: 1; } .ds-copy:focus-visible { outline: 2px solid var(--color-brand-400, oklch(0.72 0.15 278)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Details Table",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Copyable company facts in one hairline panel, tabular numerals.",
+      "html": "<dl class=\"ds-details\"><div class=\"ds-row\"><dt>Legal name</dt><dd>Gillette Ventures LLC</dd></div><div class=\"ds-row\"><dt>Entity type</dt><dd>Limited liability company</dd></div></dl>",
+      "css": ".ds-details { margin: 0; overflow: hidden; border-radius: var(--radius-xl, 12px); border: 1px solid var(--color-line, oklch(0.24 0.006 270)); background: oklch(0.175 0.005 270 / 0.6); font: 400 1rem/1.5 var(--font-sans, Geist, system-ui, sans-serif); font-variant-numeric: tabular-nums; color: var(--color-ink, oklch(0.97 0.003 270)); } .ds-row { display: grid; grid-template-columns: 13rem 1fr; gap: 16px; padding: 16px 24px; border-bottom: 1px solid var(--color-line, oklch(0.24 0.006 270)); transition: background-color 150ms; } .ds-row:last-child { border-bottom: 0; } .ds-row:hover { background: oklch(0.2 0.006 270 / 0.5); } .ds-row dt { font-size: 0.875rem; color: var(--color-ink-faint, oklch(0.62 0.01 270)); } .ds-row dd { margin: 0; }"
+    },
+    {
+      "name": "Spotlight Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Closing contact panel lit by a pointer-following accent spotlight.",
+      "html": "<section class=\"ds-spot\" onpointermove=\"const r=this.getBoundingClientRect();this.style.setProperty('--x',(event.clientX-r.left)+'px');this.style.setProperty('--y',(event.clientY-r.top)+'px')\"><h2>Write to us.</h2><p>We reply by email.</p></section>",
+      "css": ".ds-spot { --x: 50%; --y: 0%; position: relative; isolation: isolate; overflow: hidden; padding: 56px 24px; border-radius: var(--radius-xl, 12px); border: 1px solid var(--color-line, oklch(0.24 0.006 270)); background: oklch(0.175 0.005 270 / 0.6); color: var(--color-ink, oklch(0.97 0.003 270)); font-family: var(--font-sans, Geist, system-ui, sans-serif); } .ds-spot::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(600px circle at var(--x) var(--y), oklch(0.64 0.19 278 / 0.16), transparent 45%); opacity: 0.6; transition: opacity 300ms; } .ds-spot:hover::before { opacity: 1; } .ds-spot h2 { margin: 0; font-size: 1.875rem; font-weight: 600; letter-spacing: -0.03em; } .ds-spot p { margin: 16px 0 0; font-size: 1.125rem; line-height: 1.625; color: var(--color-ink-muted, oklch(0.68 0.01 270)); }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Sticky glass header with the one-word wordmark, a muted link and the Contact pill; current page in violet.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\" aria-label=\"Gillette Ventures\"><b>Gillette</b><span>Ventures</span></a><div><a class=\"ds-nav-link\" href=\"#\">Company details</a><a class=\"ds-nav-pill\" href=\"#\" aria-current=\"page\">Contact</a></div></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 24px; border-bottom: 1px solid oklch(0.24 0.006 270 / 0.7); background: oklch(0.145 0.004 270 / 0.75); backdrop-filter: blur(24px) saturate(1.5); font: 400 0.875rem/1.43 var(--font-sans, Geist, system-ui, sans-serif); color: var(--color-ink, oklch(0.97 0.003 270)); } .ds-nav > div { display: flex; align-items: center; gap: 4px; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav-brand { font-size: 16px; letter-spacing: -0.03em; } .ds-nav-brand b { font-weight: 600; } .ds-nav-brand span { font-weight: 400; color: var(--color-ink-muted, oklch(0.68 0.01 270)); } .ds-nav-link { padding: 12px; border-radius: var(--radius-md, 6px); color: var(--color-ink-muted, oklch(0.68 0.01 270)) !important; transition: color 150ms; } .ds-nav-link:hover { color: var(--color-ink, oklch(0.97 0.003 270)) !important; } .ds-nav-pill { position: relative; display: inline-flex; align-items: center; height: 32px; margin-left: 4px; padding: 0 12px; border-radius: var(--radius-md, 6px); border: 1px solid var(--color-line-strong, oklch(0.31 0.008 270)); background: var(--color-surface-raised, oklch(0.2 0.006 270)); font-weight: 500; transition: border-color 150ms; } .ds-nav-pill::after { content: ''; position: absolute; inset: -6px; } .ds-nav-pill:hover { border-color: var(--color-ink-faint, oklch(0.62 0.01 270)); } .ds-nav-pill[aria-current=page] { border-color: oklch(0.72 0.15 278 / 0.6); color: var(--color-brand-300, oklch(0.8 0.1 278)) !important; } .ds-nav a:focus-visible { outline: 2px solid var(--color-brand-400, oklch(0.72 0.15 278)); outline-offset: 3px; border-radius: 6px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Ledger",
+    "overview": "A near-black company page at Linear, Stripe and Raycast craft. The ground is one dark, faintly cool neutral; panels sit a step lighter behind hairline borders; type is Geist throughout, set large and tight. A single blue-violet hue (278) is held back for live signal, so it reads as the system answering you rather than as decoration.\n\nDensity is low and the rhythm is generous: big section gaps, left-aligned headlines, plain-text principles under thin rules instead of cards. The verifiable facts (legal name, address, email) are the working centrepiece, set in a copyable table with tabular numerals. The site is dark only. There is no light theme and no theme switch.\n\nMotion is quiet and mostly one-shot. Content rises and unblurs on load, later sections fade up once as they scroll in, pages cross-fade with the header held still, the hero light field drifts on a long loop, the copy control morphs its icon and flashes its row, and the closing panel carries a pointer spotlight. Under reduced motion the fades and color changes stay and all movement goes.",
+    "keyCharacteristics": [
+      "Dark only, one neutral family at hue 270 stepped by lightness.",
+      "One accent hue (278), reserved for signal.",
+      "Geist for everything, negative tracking that tightens as size grows.",
+      "Hairline borders and tonal steps carry depth. No drop shadows.",
+      "Every interactive target is at least 44px.",
+      "Contact is email only. No forms."
+    ],
+    "rules": [
+      {
+        "name": "The Signal Only Rule",
+        "body": "The accent marks state, never decoration: focus, caret and selection, copied, current page, and the two light sources (hero glow, spotlight). No accent buttons, accent headings or accent fills.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Neutral Rule",
+        "body": "Every neutral is the same hue (270) at a different lightness. Depth is a lightness step, not a new color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tighter At Scale Rule",
+        "body": "Tracking tightens with size: -0.01em at 1.0625 to 1.5rem, -0.03em on headlines, -0.035em on page titles, -0.04em on display. Body text stays at normal tracking.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Facts Rule",
+        "body": "Address and company data (the details table, the contact address, the footer) set tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Light Not Shadow Rule",
+        "body": "Things come forward by getting lighter or lit, never by casting a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the accent to signal: focus, caret, selection, copied, current page, glow and spotlight.",
+      "Do step neutrals by lightness at hue 270 for any new surface.",
+      "Do make every interactive target at least 44px, padding the hit area with a pseudo-element when the visible control is smaller.",
+      "Do set company and address data in tabular numerals.",
+      "Do tighten tracking as type grows, per the Tighter At Scale Rule.",
+      "Do give every motion a reduced-motion form that keeps the fade and drops the movement, and keep content visible without JavaScript.",
+      "Do keep contact to email. A mailto button and the visible address are the whole contact surface."
+    ],
+    "donts": [
+      "Don't add a light theme or a theme switch.",
+      "Don't use drop shadows; use a lighter step or light.",
+      "Don't fill buttons, headings or panels with the accent.",
+      "Don't add a contact form.",
+      "Don't add a second typeface."
+    ]
+  }
+}

@@ -7,7 +7,8 @@ The brief is `docs/brief.md`.
 ## Stack
 
 Astro 7 (`output: "server"`) + Tailwind v4 + React islands, on Cloudflare Workers (worker `gillette-ventures`,
-domain gilletteventures.com). Contact form email goes through Resend, with Turnstile for spam. GA4 loads via Partytown.
+domain gilletteventures.com). GA4 loads via Partytown. There is no contact form
+by choice: contact is email only. Every page is prerendered.
 No shadcn components installed yet (`components.json` only).
 
 ## Commands
@@ -30,25 +31,24 @@ server as a background process: `astro dev status`, `astro dev logs --follow` an
   else hardcodes an address, phone number or business name.
 - `src/lib/schema.ts` builds the JSON-LD graph from that config.
 - `src/components/Seo.astro` owns the document head. Pages pass props to the layout.
-- `src/actions/` holds form and mutation endpoints. No API routes.
-- Env vars are declared in `astro.config.mjs` (`env.schema`). Public values are in `wrangler.jsonc` `vars`,
-  and secrets (`RESEND_API_KEY`, `TURNSTILE_SECRET_KEY`) go through `wrangler secret put`, locally in `.dev.vars`.
+- Env vars are declared in `astro.config.mjs` (`env.schema`). Pages are prerendered, so values are read at build time;
+  `GA_MEASUREMENT_ID` defaults to G-GPXWKKWZHS there.
 - schema.org type is `Organization`. There is no phone, hours or geo, and the schema and footer skip empty fields.
 
 ## Design
 
-- Palette: one indigo accent (`--color-brand-*`, oklch hue 270) on neutral surfaces. No logo yet, so no colors to match.
-- Type: one crisp sans for everything. The wordmark is the business name set in type.
-- Light/dark: light by default, dark through `prefers-color-scheme`.
-- Voice: plain and factual, like a firm stating who it is. No hype, no startup slogans, no exclamation marks.
-- References: none given.
-- Must: the legal name, registered address and email shown consistently on every page (footer), with Privacy and Terms linked from the footer.
-- Must not: list ventures yet; imply services for hire; use stock photos.
+- Full system: `DESIGN.md` and the direction brief in `.impeccable/surfaces/`. Product truth: `PRODUCT.md`.
+- Palette: dark only. Near-black surfaces, hairline borders, one blue-violet accent (`--color-brand-*`, hue 278) for signal.
+- Type: Geist via the Astro Fonts API. Tight negative tracking on display sizes.
+- Voice: the company as "we". Plain and factual. No hype, no exclamation marks.
+- References: Linear, Stripe, Raycast for craft level.
+- Must: legal name, principal address and email consistent on every page; Privacy and Terms in the footer.
+- Must not: list ventures yet; explain the internal structure (DBAs, banking, spin-outs); imply services for hire.
 
 ## Gotchas
 
 - Astro sessions need the KV binding `SESSION` (namespace `gillette-ventures-session`, already created).
-  Without it the contact form submits and shows nothing.
+  The adapter expects it even though nothing uses sessions yet.
 - `main` in `wrangler.jsonc` points at `@astrojs/cloudflare/entrypoints/server`, not
   at a path inside `dist/`.
 
