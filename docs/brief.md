@@ -2,14 +2,14 @@
 
 ## TBD
 
-- Inbox that `admin@gilletteventures.com` forwards to (Cloudflare Email Routing)
+- Nothing open.
 
 ## The business
 
 - Name: Gillette Ventures. Legal name: Gillette Ventures LLC.
 - What it is: an umbrella LLC. Each project runs under it as a DBA and spins out into its own entity once it earns enough.
 - Location: no storefront. Principal address (the registered agent's): 784 S. Clearwater Loop, Ste B, Post Falls, ID 83854, US.
-- Contact: admin@gilletteventures.com. No phone.
+- Contact: admin@gilletteventures.com, hosted on Proton Mail. No phone.
 - schema.org type: `Organization`.
 
 ## Purpose and audience
