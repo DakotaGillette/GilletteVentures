@@ -2,7 +2,6 @@
 
 ## TBD
 
-- State of formation (sets governing law on the terms page)
 - Inbox that `admin@gilletteventures.com` forwards to (Cloudflare Email Routing)
 
 ## The business

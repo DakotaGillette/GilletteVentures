@@ -60,8 +60,7 @@ export const site: Site = {
 
   priceRange: "",
 
-  // TBD: state of formation.
-  jurisdiction: "",
+  jurisdiction: "Idaho",
 
   social: [],
 

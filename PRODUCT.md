@@ -26,7 +26,7 @@ Visited mostly once, during a verification or partner check, on desktop and phon
 
 - Pages: home, contact (email and address, no form), privacy, terms, 404. All prerendered.
 - Astro 7 on Cloudflare Workers; business facts live in `src/config/site.ts`.
-- Undecided: state of formation. Ventures are deliberately not listed yet.
+- Formed in Idaho. Ventures are deliberately not listed yet.
 
 ## Brand Commitments
 
