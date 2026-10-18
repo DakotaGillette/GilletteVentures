@@ -3,7 +3,6 @@ import { defineConfig, envField, fontProviders } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
 import tailwindcss from "@tailwindcss/vite";
 
 import { execSync } from "node:child_process";
@@ -37,7 +36,6 @@ export default defineConfig({
         return item;
       },
     }),
-    partytown({ config: { forward: ["dataLayer.push", "gtag"] } }),
   ],
   fonts: [
     {

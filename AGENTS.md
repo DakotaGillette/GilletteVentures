@@ -7,7 +7,7 @@ The brief is `docs/brief.md`.
 ## Stack
 
 Astro 7 (`output: "server"`) + Tailwind v4 + React islands, on Cloudflare Workers (worker `gilletteventures`,
-domain gilletteventures.com). GA4 loads via Partytown. There is no contact form
+domain gilletteventures.com). GA4 loads with the standard async gtag.js snippet (Partytown was removed: its sandbox iframe tripped a deprecated-API warning). There is no contact form
 by choice: contact is email only. Every page is prerendered.
 No shadcn components installed yet (`components.json` only).
 

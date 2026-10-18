@@ -34,12 +34,8 @@ const onContact = Astro.url.pathname.replace(/\/$/, "") === "/contact";
     {
       isProd && gaId && (
         <>
-          <script
-            type="text/partytown"
-            is:inline
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-          />
-          <script type="text/partytown" is:inline define:vars={{ gaId }}>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+          <script is:inline define:vars={{ gaId }}>
             window.dataLayer = window.dataLayer || [];
             function gtag() {`{`} dataLayer.push(arguments); {`}`}
             gtag('js', new Date());
@@ -59,7 +55,7 @@ const onContact = Astro.url.pathname.replace(/\/$/, "") === "/contact";
 
     <header style="view-transition-name: site-header" class="sticky top-0 z-40 border-b border-line/70 bg-surface/75 backdrop-blur-xl backdrop-saturate-150">
       <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <a href="/" class="-mx-2 rounded-md px-2 py-3 text-base tracking-[-0.03em]" aria-label={site.name}>
+        <a href="/" class="-mx-2 rounded-md px-2 py-3 text-base tracking-[-0.03em]">
           <span class="font-semibold">Gillette</span><span class="font-normal text-ink-muted">Ventures</span>
         </a>
         <ul class="flex items-center gap-1 text-sm">

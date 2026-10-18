@@ -40,7 +40,7 @@
 - Domain: gilletteventures.com, registered on Cloudflare.
 - Hosting: Cloudflare Workers, worker `gillette-ventures`.
 - Repo: github.com/DakotaGillette/GilletteVentures.
-- Analytics: GA4 (G-GPXWKKWZHS) via Partytown.
+- Analytics: GA4 (G-GPXWKKWZHS), standard gtag.js snippet.
 - Integrations: none.
 
 ## Practical
