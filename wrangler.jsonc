@@ -9,6 +9,9 @@
     "directory": "./dist",
     "not_found_handling": "404-page"
   },
+  // Serve only on gilletteventures.com: no duplicate copy on workers.dev or preview URLs.
+  "workers_dev": false,
+  "preview_urls": false,
   "observability": {
     "enabled": true
   },
