@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // F5: starts the dev server, opens Chrome, stops the server when you disconnect.
+      "name": "Site in Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "preLaunchTask": "dev: start",
+      "postDebugTask": "dev: stop",
+      "sourceMapPathOverrides": {
+        "/@fs/*": "${workspaceFolder}/*",
+        "/src/*": "${workspaceFolder}/src/*"
+      }
+    },
+    {
+      "name": "Site in Edge",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "preLaunchTask": "dev: start",
+      "postDebugTask": "dev: stop"
+    },
+    {
+      // Serves the production build on the real Workers runtime. Slower to start;
+      // use it to check things that only differ once built.
+      "name": "Production build on Workers",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8787",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "worker: build and serve"
+    },
+    {
+      // Server-side breakpoints. Run "worker: build and serve" first, then attach.
+      "name": "Attach to Worker",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "cwd": "${workspaceFolder}",
+      "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Worker + browser",
+      "configurations": ["Production build on Workers", "Attach to Worker"],
+      "stopAll": true
+    }
+  ]
+}

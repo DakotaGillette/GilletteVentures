@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.dev.vars
+.env
+.DS_Store
+*.log
+
+# Agent scratch output
+.playwright-mcp/
+
+# Claude Code subagent worktrees
+.claude/worktrees/

@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gillette-ventures",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-10-18",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    // Public values only. Secrets go through `wrangler secret put`.
+    "CONTACT_TO": "admin@gilletteventures.com",
+    "CONTACT_FROM": "noreply@gilletteventures.com",
+    "TURNSTILE_SITE_KEY": "",
+    "GA_MEASUREMENT_ID": ""
+  },
+  // Astro sessions (used by Actions to carry form results across the POST redirect).
+  // `wrangler dev` simulates this locally regardless of the id. Before the first
+  // deploy run `wrangler kv namespace create SESSION` and paste the real id here.
+  "kv_namespaces": [{ "binding": "SESSION", "id": "7140af465da7465ab23cff1215214069" }],
+  //
+  // More bindings as needed. Run `wrangler types` after any change.
+  // "d1_databases": [{ "binding": "DB", "database_name": "", "database_id": "" }],
+  // "r2_buckets": [{ "binding": "R2", "bucket_name": "" }]
+}

@@ -1,0 +1,7 @@
+# Allow everything. A business that wants to be found does not block answer engines.
+# To opt out of AI training only, add per-bot Disallow blocks for GPTBot, ClaudeBot,
+# CCBot and Google-Extended, and leave the search and user-triggered bots allowed.
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap-index.xml

@@ -1,0 +1,53 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // Astro 7 backgrounds itself and exits, so no background matcher is needed.
+      // Stop first: a stale server holds a lock and would keep its old port, which
+      // would leave the browser pointed at nothing. "stop" exits 0 when idle.
+      "label": "dev: start",
+      "type": "shell",
+      "command": "pnpm exec astro dev stop; pnpm exec astro dev --background --port 4321",
+      "windows": {
+        "command": "pnpm exec astro dev stop; pnpm exec astro dev --background --port 4321"
+      },
+      "isBackground": false,
+      "problemMatcher": [],
+      "presentation": { "reveal": "silent", "panel": "shared", "clear": true }
+    },
+    {
+      "label": "dev: stop",
+      "type": "shell",
+      "command": "pnpm exec astro dev stop",
+      "problemMatcher": [],
+      "presentation": { "reveal": "silent", "panel": "shared" }
+    },
+    {
+      "label": "dev: logs",
+      "type": "shell",
+      "command": "pnpm exec astro dev logs --follow",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      // The real workerd runtime against the built output. Stays in the foreground,
+      // so it does need a background matcher.
+      "label": "worker: build and serve",
+      "type": "shell",
+      "command": "pnpm build && pnpm exec wrangler dev --port 8787 --inspector-port 9229",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "wrangler",
+        "pattern": [{ "regexp": "^\\s*✘?\\s*\\[?(ERROR|error)\\]?\\s*(.*)$", "severity": 1, "message": 2 }],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting local server|astro build",
+          "endsPattern": "Ready on https?://"
+        }
+      },
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    { "label": "check", "type": "shell", "command": "pnpm check", "problemMatcher": ["$tsc"] },
+    { "label": "images", "type": "shell", "command": "pnpm images", "problemMatcher": [] }
+  ]
+}

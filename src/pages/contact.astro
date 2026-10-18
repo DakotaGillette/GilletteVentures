@@ -1,0 +1,102 @@
+---
+import Base from "../layouts/Base.astro";
+import { actions, isInputError } from "astro:actions";
+import { site } from "../config/site";
+import { breadcrumbs } from "../lib/schema";
+import { TURNSTILE_SITE_KEY } from "astro:env/client";
+
+const result = Astro.getActionResult(actions.contact);
+const sent = result && !result.error;
+
+/** Per-field messages for validation failures; a single message for anything else. */
+const fieldErrors = result?.error && isInputError(result.error) ? result.error.fields : undefined;
+const formError =
+  result?.error && !isInputError(result.error) ? result.error.message : undefined;
+const crumbs = breadcrumbs([
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+]);
+---
+
+<Base
+  title="Contact"
+  description={`Get in touch with ${site.name}.`}
+  schema={[crumbs]}
+>
+  <h1 class="font-display text-3xl font-semibold">Contact</h1>
+
+  {
+    sent ? (
+      <p class="mt-6 max-w-prose rounded-md border border-line bg-surface-muted p-4">
+        Thanks. We have your message and will reply to the address you gave.
+      </p>
+    ) : (
+      <form method="POST" action={actions.contact} class="mt-8 max-w-xl space-y-5">
+        {formError && (
+          <p class="rounded-md border border-line bg-surface-muted p-4 text-sm">{formError}</p>
+        )}
+
+        <div>
+          <label for="name" class="block text-sm font-medium">Name</label>
+          <input
+            id="name"
+            name="name"
+            aria-describedby={fieldErrors?.name ? "name-error" : undefined}
+            type="text"
+            required
+            autocomplete="name"
+            class="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2"
+          />
+          {fieldErrors?.name && <p id="name-error" class="mt-1 text-sm text-red-600">{fieldErrors.name[0]}</p>}
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input
+            id="email"
+            name="email"
+            aria-describedby={fieldErrors?.email ? "email-error" : undefined}
+            type="email"
+            required
+            autocomplete="email"
+            class="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2"
+          />
+          {fieldErrors?.email && <p id="email-error" class="mt-1 text-sm text-red-600">{fieldErrors.email[0]}</p>}
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            aria-describedby={fieldErrors?.message ? "message-error" : undefined}
+            class="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2"
+          />
+          {fieldErrors?.message && <p id="message-error" class="mt-1 text-sm text-red-600">{fieldErrors.message[0]}</p>}
+        </div>
+
+        {/* Honeypot: hidden from people, tempting to bots. */}
+        <div class="absolute left-[-9999px]" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        {TURNSTILE_SITE_KEY && (
+          <>
+            <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} />
+            <script is:inline async src="https://challenges.cloudflare.com/turnstile/v0/api.js" />
+          </>
+        )}
+
+        <button
+          type="submit"
+          class="inline-flex items-center rounded-md bg-brand-500 px-5 py-3 text-white transition-colors hover:bg-brand-700"
+        >
+          Send message
+        </button>
+      </form>
+    )
+  }
+</Base>
